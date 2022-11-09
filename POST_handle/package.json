@@ -1,0 +1,14 @@
+{
+  "name": "post_handle",
+  "version": "0.0.0",
+  "devDependencies": {
+    "jest": "^29.3.0",
+    "wrangler": "2.1.15"
+  },
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish",
+    "test": "jest"
+  }
+}
