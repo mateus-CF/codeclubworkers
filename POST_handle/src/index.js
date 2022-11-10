@@ -9,9 +9,9 @@
  */
 
 export default {
-	async fetch(request, headers, env, ctx) {
+	async fetch(request, env, ctx) {
 		if (request.method == "POST"){
-			let headersObject = Object.fromEntries(request.headers);
+			const headersObject = Object.fromEntries(request.headers);
 			const data = {
 				hello: 'Hey! You did a POST request!',
 				method: request.method,
