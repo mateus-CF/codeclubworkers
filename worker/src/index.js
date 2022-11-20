@@ -29,8 +29,15 @@ export default {
 					});
 
 		}
-		else{
-			return new Response("Hello World!");
+		else if(request.method == "GET"){
+			const replies = {
+				0 : "Yes",
+				1 : "No",
+				2 : "Not likely",
+				3 : "Most likely"
+			}
+			const max = 4;
+			return new Response("Magic 8 ball says: " + replies[Math.floor(Math.random() * max)]);
 		}
 	},
 };
