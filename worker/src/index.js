@@ -32,15 +32,22 @@ export default {
 		else if(request.method == "GET"){
 			function getRandomInt(max) {
 				return Math.floor(Math.random() * max);
-			  }
-			const replies = {
-				0 : "Yes",
-				1 : "No",
-				2 : "Not likely",
-				3 : "Most likely"
-			}
-			const max = 4;
-			return new Response("Magic 8 ball says: " + replies[getRandomInt(max)]);
+			};
+			const gen_reply ={
+				replies :  {
+					0 : "Yes",
+					1 : "No",
+					2 : "Not likely",
+					3 : "Most likely"
+				},
+				limit : 4,
+				get_text : function(){
+					return "Magic 8 ball says: " + this.replies[getRandomInt(this.limit)]
+				}
+
+			};
+
+			return new Response(gen_reply.get_text());
 		}
 	},
 };
