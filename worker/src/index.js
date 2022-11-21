@@ -30,6 +30,9 @@ export default {
 
 		}
 		else if(request.method == "GET"){
+			function getRandomInt(max) {
+				return Math.floor(Math.random() * max);
+			  }
 			const replies = {
 				0 : "Yes",
 				1 : "No",
@@ -37,7 +40,7 @@ export default {
 				3 : "Most likely"
 			}
 			const max = 4;
-			return new Response("Magic 8 ball says: " + replies[Math.floor(Math.random() * max)]);
+			return new Response("Magic 8 ball says: " + replies[getRandomInt(max)]);
 		}
 	},
 };
