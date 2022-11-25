@@ -17,7 +17,8 @@ export default {
 				method: request.method,
 				your_city: request.cf.city,
 				request_headers: headersObject,
-				//bot_score: request.cf.
+				bot_score: request.cf.botManagement.score,
+				bot_is_verified: request.cf.botManagement.verifiedBot
 			};
 		
 			const json = JSON.stringify(data, null, 2);
