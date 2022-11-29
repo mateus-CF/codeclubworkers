@@ -10,15 +10,18 @@
 
 export default {
 	async fetch(request, env, ctx) {
-		if (request.method == "POST"){
+
+		//Check if request is human or belong to a verified bot
+		if (request.cf.botManagement.score < 30) {
+			// we have a bot, return json
 			const headersObject = Object.fromEntries(request.headers);
 			const data = {
-				hello: 'Hey! You did a POST request!',
+				hello: 'Hey! We detected you request is automated',
 				method: request.method,
 				your_city: request.cf.city,
-				request_headers: headersObject,
 				bot_score: request.cf.botManagement.score,
-				bot_is_verified: request.cf.botManagement.verifiedBot
+				bot_is_verified: request.cf.botManagement.verifiedBot,
+				request_headers: headersObject
 			};
 		
 			const json = JSON.stringify(data, null, 2);
@@ -30,26 +33,12 @@ export default {
 						},
 					});
 
-		}
-		else if(request.method == "GET"){
-			function getRandomInt(max) {
-				return Math.floor(Math.random() * max);
-			};
-			const gen_reply ={
-				replies :  {
-					0 : "Yes",
-					1 : "No",
-					2 : "Not likely",
-					3 : "Most likely"
-				},
-				limit : 4,
-				get_text : function(){
-					return "Magic 8 ball says: " + this.replies[getRandomInt(this.limit)]
-				}
 
-			};
-
-			return new Response(gen_reply.get_text());
+		} else {
+			request = new Request(request)
+			let response = await fetch(request)
+			return response
 		}
+
 	},
 };
