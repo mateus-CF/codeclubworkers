@@ -1,3 +1,7 @@
-name = "post_handle"
-main = "src/index.js"
-compatibility_date = "2022-11-08"
+name = "router"
+type = "webpack"
+
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
