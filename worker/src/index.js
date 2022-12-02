@@ -29,7 +29,7 @@ export default {
 					});
 
 		}
-		else if(request.method == "GET"){
+		else {
 			function getRandomInt(max) {
 				return Math.floor(Math.random() * max);
 			};
@@ -40,9 +40,9 @@ export default {
 					2 : "Not likely",
 					3 : "Most likely"
 				},
-				limit : 4,
+				//limit : 4,
 				get_text : function(){
-					return "Magic 8 ball says: " + this.replies[getRandomInt(this.limit)]
+					return "Magic 8 ball says: " + this.replies[getRandomInt(Object.keys(this.replies).length)]
 				}
 
 			};
